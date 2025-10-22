@@ -10,6 +10,11 @@ void DataManager::addMeasurement(const Measurement& m)
 
 /*************** STATISTICS *******************/
 float DataManager::calculateMean() const {
+	if (measurement.empty())
+	{
+		std::cerr << "ERROR: No measurements were found " << std::endl;
+		return 1;
+	}
 	float sum{};
 	for (auto& m : measurement)
 	{
@@ -18,6 +23,11 @@ float DataManager::calculateMean() const {
 	return sum / measurement.size();		//returns the mean value
 }
 float DataManager::findMin() const {
+	if (measurement.empty())
+	{
+		std::cerr << "ERROR: No measurements were found " << std::endl;
+		return 1;
+	}
 	float minValue = measurement[0].value;
 	for ( auto& m : measurement)
 	{
@@ -29,6 +39,11 @@ float DataManager::findMin() const {
 	return minValue;		//returns the smallest value
 }
 float DataManager::findMax() const {
+	if (measurement.empty())
+	{
+		std::cerr << "ERROR: No measurements were found " << std::endl;
+		return 1;
+	}
 	float maxValue = measurement[0].value;
 	for (auto& m : measurement)
 	{
@@ -40,6 +55,11 @@ float DataManager::findMax() const {
 	return maxValue;			//returns the biggest number
 }
 float DataManager::calcStandardDeviation() const {
+	if (measurement.empty())
+	{
+		std::cerr << "ERROR: No measurements were found " << std::endl;
+		return 1;
+	}
 	float var{};
 	for (auto& m : measurement)
 	{
@@ -50,11 +70,18 @@ float DataManager::calcStandardDeviation() const {
 }
 
 //Printing all the data
-void DataManager::printData() const 
-{	
+void DataManager::printData() const {
+	if (measurement.empty())
+	{
+		std::cerr << "PRINT FAILED: No values" << std::endl;
+	}
+	else
+	{
+
 	std::cout << "\nTimestamp\t\tTemparture" << std::endl;
 	for(auto& m : measurement)
 	{
 		std::cout << m.timestamp << "\t" << m.value << std::endl;
+	}
 	}
 }
