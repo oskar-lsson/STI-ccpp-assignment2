@@ -18,9 +18,15 @@
     <ClCompile Include="main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="dataManager.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="measurement.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="dataManager.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
