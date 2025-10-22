@@ -16,7 +16,7 @@ public:
 	float calculateMean() const;
 	float findMin() const;
 	float findMax() const;
-	float calculateStdDeviation() const;
+	float calcStandardDeviation() const;
 
 	//FILE Manager
 	void loadFromFile(const std::string& filename);
