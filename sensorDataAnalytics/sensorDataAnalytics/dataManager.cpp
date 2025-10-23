@@ -4,6 +4,7 @@
 #include <iostream>
 #include <fstream>
 #include <sstream>
+#include <algorithm>
 //adds new measurements
 void DataManager::addMeasurement(const Measurement& m) 
 {
@@ -111,4 +112,49 @@ void DataManager::saveToFile(const std::string& filename) {
 		file << m.timestamp << ", " << m.value << "\n";
 	}
 	file.close();
+}
+
+//Value search
+void DataManager::valueSearch() const {
+	float searchVal;
+	bool valueWasFound = false;			//Used to determine if a value was found
+	std::cout << "Which value are you looking for? "; std::cin >> searchVal; std::cout << std::endl;
+	for (auto& m : measurement)
+	{
+		if (m.value == searchVal)
+		{
+			std::cout << "It was " << m.value << " degrees on " << m.timestamp << std::endl;
+			valueWasFound = true;
+		}
+	}
+	if (valueWasFound == false)
+	{
+		std::cout << "\n***Value not found***\n" << std::endl;
+	}
+}
+void DataManager::timestampSearch() const {
+	std::string searchTime;
+	bool valueWasFound = false;			//Used to determine if a value was found
+	std::cout << "Which value are you looking for? "; std::getline(std::cin, searchTime); std::cout << std::endl;
+	for (auto& m : measurement)
+	{
+		if (m.timestamp == searchTime)
+		{
+			std::cout << "On " << m.timestamp << " it was " << m.value <<" degrees!" << std::endl;
+			valueWasFound = true;
+		}
+	}
+	if (valueWasFound == false)
+	{
+		std::cout << "\n***Value not found***\n" << std::endl;
+	}
+}
+void DataManager::sortMeasurements(bool choice) {
+	std::sort(measurement.begin(), measurement.end(),
+		[choice](const Measurement& value1, const Measurement& value2) {
+			if (choice)
+				return value1.value < value2.value;         //ascending order by value
+			else
+				return value1.timestamp < value2.timestamp;     //ascending order by timestamp
+		});
 }

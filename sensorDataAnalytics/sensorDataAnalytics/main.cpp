@@ -11,24 +11,19 @@ int main()
 	DataManager tempSensor;
 	UserInterface ui;
 	std::string time;
-	int userChoice; int menuChoice;
+	int userChoice, menuChoice, searchChoice, sortingChoice;
 
 	tempSensor.loadFromFile("sensorMeasurements.csv");
 	while (true)
 	{
 		ui.clearWindow();
-		std::cout << ""
-			"\n_______MENU_______\n"
-			"\n[1] Add new values "
-			"\n[2] Display statistics "
-			"\n[3] Exit" << std::endl;
+		ui.startMenu();
 		menuChoice = ui.getValidInputValue("Enter choice here: ");
 		ui.clearWindow();
 		switch (menuChoice)
 		{
 		case 1: 
-			std::cout << "\nHow many measurement do you wish to enter? "; std::cin >> userChoice;
-			std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');     //clears the buffert
+			userChoice = ui.getValidInputValue("How many measurement do you wish to enter ? ");
 
 			for (int i = 0; i < userChoice; i++)
 			{
@@ -39,15 +34,40 @@ int main()
 			break;
 		case 2: 
 			tempSensor.printData();
-			std::cout << "mean: " << tempSensor.calculateMean() << std::endl;
-			std::cout << "min: " << tempSensor.findMin() << std::endl;
-			std::cout << "max: " << tempSensor.findMax() << std::endl;
-			std::cout << "standard diviation: " << tempSensor.calcStandardDeviation() << std::endl;
+			std::cout << "\nMean: " << tempSensor.calculateMean() << std::endl;
+			std::cout << "Min value: " << tempSensor.findMin() << std::endl;
+			std::cout << "Max value: " << tempSensor.findMax() << std::endl;
+			std::cout << "Standard diviation: " << tempSensor.calcStandardDeviation() << std::endl;
 			system("pause");	//waits for the user press any key to continue
 			break;
 		case 3:
+			searchChoice = ui.getValidInputValue("Search by \n[1] Value? \n[2] Timestamp? ");
+			switch (searchChoice) {
+			case 1:
+				tempSensor.valueSearch();
+			case 2:
+				tempSensor.timestampSearch();
+			}
+			system("pause");	//waits for the user press any key to continue
+			break;
+		case 4:
+			sortingChoice = ui.getValidInputValue("Sort by \n[1] Value?\n[2] Timestamp? ");
+			if (sortingChoice == 1)
+			{
+				tempSensor.sortMeasurements(true);
+			}
+			else
+			{
+				tempSensor.sortMeasurements(false);
+			}
+			tempSensor.printData();
+			system("pause");	//waits for the user press any key to continue
+			break;
+		case 5:
 			tempSensor.saveToFile("sensorMeasurements.csv");
+			std::cout << "\n\tA river dirt chee (Arrivederci)\n\n";
 			exit(0);
+
 		default:
 			std::cerr << "\nERROR: Menu not found" << std::endl;
 			break;

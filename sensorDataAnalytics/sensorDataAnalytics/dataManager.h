@@ -22,6 +22,13 @@ public:
 	void loadFromFile(const std::string& filename);
 	void saveToFile(const std::string& filename);
 
+	//Search for measurments
+	void valueSearch() const;
+	void timestampSearch() const;
+
+	//sorting
+	void sortMeasurements(bool choice);
+
 	//printing data
 	void printData() const;
 
