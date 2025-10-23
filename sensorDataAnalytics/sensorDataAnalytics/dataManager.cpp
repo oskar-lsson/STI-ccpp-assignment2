@@ -2,6 +2,8 @@
 #include <string>
 #include <vector>
 #include <iostream>
+#include <fstream>
+#include <sstream>
 //adds new measurements
 void DataManager::addMeasurement(const Measurement& m) 
 {
@@ -77,11 +79,34 @@ void DataManager::printData() const {
 	}
 	else
 	{
-
-	std::cout << "\nTimestamp\t\tTemparture" << std::endl;
-	for(auto& m : measurement)
-	{
+		std::cout << "\nTimestamp\t\tTemparture" << std::endl;
+		for(auto& m : measurement)
+		{
 		std::cout << m.timestamp << "\t" << m.value << std::endl;
+		}
 	}
+}
+void DataManager::loadFromFile(const std::string& filename) {
+	std::ifstream file(filename);
+	if (!file.is_open()) {
+		std::cerr << "ERROR: Failed to open " << filename << std::endl;
 	}
+
+	std::string line;
+	while (getline(file, line)) {
+		std::stringstream ss(line);
+		Measurement m;
+		getline(ss, m.timestamp, ',');
+		ss >> m.value;
+		measurement.push_back(m);
+	}
+}
+
+void DataManager::saveToFile(const std::string& filename) {
+	std::ofstream file(filename);
+	for (auto& m : measurement) 
+	{
+		file << m.timestamp << ", " << m.value << "\n";
+	}
+	file.close();
 }

@@ -11,7 +11,9 @@ int main()
 	std::string time;
 	float val;
 	bool testloop = true;
-		int userChoice; int iterations{};
+	int userChoice; int iterations{};
+
+	tempSensor.loadFromFile("sensorMeasurements.csv");
 	while (testloop)
 	{
 
@@ -42,6 +44,7 @@ int main()
 			std::cout << "standard diviation: " << tempSensor.calcStandardDeviation() << std::endl;
 			break;
 		case 3:
+			tempSensor.saveToFile("sensorMeasurements.csv");
 			exit(0);
 		default:
 			std::cerr << "\nERROR: Menu not found" << std::endl;
