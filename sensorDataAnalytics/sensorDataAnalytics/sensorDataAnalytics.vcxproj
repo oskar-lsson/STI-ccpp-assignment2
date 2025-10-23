@@ -125,10 +125,12 @@
   <ItemGroup>
     <ClCompile Include="dataManager.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="userInterface.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="dataManager.h" />
     <ClInclude Include="measurement.h" />
+    <ClInclude Include="userInterface.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="sensorMeasurements.csv" />
