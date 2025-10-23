@@ -57,7 +57,7 @@ struct Measurement {
 };
 Include methods to add data, calculate statistics, and print results
 ```
-###3. File I/O
+### 3. File I/O
 - Read data from file at startup
 - Save data to file on exit
 - Format: YYYY-MM-DD HH:MM,value
