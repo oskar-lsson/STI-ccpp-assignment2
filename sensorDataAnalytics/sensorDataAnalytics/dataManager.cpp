@@ -86,6 +86,8 @@ void DataManager::printData() const {
 		}
 	}
 }
+/********* FILE Manager **********/
+//Load measurements from file
 void DataManager::loadFromFile(const std::string& filename) {
 	std::ifstream file(filename);
 	if (!file.is_open()) {
@@ -101,7 +103,7 @@ void DataManager::loadFromFile(const std::string& filename) {
 		measurement.push_back(m);
 	}
 }
-
+//saves new values to a file
 void DataManager::saveToFile(const std::string& filename) {
 	std::ofstream file(filename);
 	for (auto& m : measurement) 
