@@ -135,7 +135,7 @@ void DataManager::valueSearch() const {
 void DataManager::timestampSearch() const {
 	std::string searchTime;
 	bool valueWasFound = false;			//Used to determine if a value was found
-	std::cout << "Which value are you looking for? "; std::getline(std::cin, searchTime); std::cout << std::endl;
+	std::cout << "Which time are you looking for? "; std::getline(std::cin, searchTime); std::cout << std::endl;
 	for (auto& m : measurement)
 	{
 		if (m.timestamp == searchTime)
@@ -146,7 +146,7 @@ void DataManager::timestampSearch() const {
 	}
 	if (valueWasFound == false)
 	{
-		std::cout << "\n***Value not found***\n" << std::endl;
+		std::cout << "\n***Timestamp not found***\n" << std::endl;
 	}
 }
 void DataManager::sortMeasurements(bool choice) {

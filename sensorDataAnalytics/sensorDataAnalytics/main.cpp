@@ -45,8 +45,10 @@ int main()
 			switch (searchChoice) {
 			case 1:
 				tempSensor.valueSearch();
+				break;
 			case 2:
 				tempSensor.timestampSearch();
+				break;
 			}
 			system("pause");	//waits for the user press any key to continue
 			break;
